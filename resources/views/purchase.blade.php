@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Purchase Package - Jadi Ngetop</title>
+    <title>Top Up Points - Jadi Ngetop</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Plus Jakarta Sans Font -->
@@ -69,61 +69,49 @@
         </div>
     </header>
 
+    <!-- Top Up Page Content -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-md">
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <!-- Current Points Highlighted Card -->
+                <div class="bg-blue-100 p-4 rounded-lg mb-6 text-center">
+                    <h3 class="text-lg font-semibold text-blue-800 mb-2">Current Points</h3>
+                    <p class="text-3xl font-bold text-blue-600">1,200 Points</p>
+                </div>
 
-    <!-- Purchase Page Content -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-3xl font-bold text-center mb-8">Purchase Package</h2>
+                <!-- Top-Up Amount Input -->
+                <div class="mb-6">
+                    <label for="topup-amount" class="block text-gray-700 font-semibold mb-2">Top-Up Amount (Rupiah)</label>
+                    <input type="number" id="topup-amount" name="topup-amount" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter amount in Rupiah" min="10000">
+                </div>
 
-            <!-- Product Information Container -->
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8">
-                <h3 class="text-2xl font-semibold mb-4">Package Details</h3>
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="md:w-1/2 mb-4 md:mb-0">
-                        <img src="https://via.placeholder.com/400x300?text=Package+Image" alt="Package Image" class="w-full rounded-lg shadow">
-                    </div>
-                    <div class="md:w-1/2 md:pl-6">
-                        <h4 class="text-xl font-semibold mb-2">Weekly Package</h4>
-                        <p class="text-gray-600 mb-4">Ideal for sustained visibility. Your ad appears in the featured TV container for a full week.</p>
-                        <ul class="list-disc list-inside mb-4">
-                            <li>Placement: Featured TV Container</li>
-                            <li>Duration: 7 Days</li>
-                            <li>Points Required: 500</li>
-                        </ul>
-                        <p class="text-lg font-bold text-blue-600">Price: 500 Points</p>
+                <!-- Quick-Select Buttons -->
+                <div class="mb-6">
+                    <p class="text-gray-700 font-semibold mb-2">Quick Select:</p>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="setAmount(50000)" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Rp 50,000</button>
+                        <button onclick="setAmount(100000)" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Rp 100,000</button>
+                        <button onclick="setAmount(200000)" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Rp 200,000</button>
+                        <button onclick="setAmount(500000)" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Rp 500,000</button>
                     </div>
                 </div>
-            </div>
 
-            <!-- Points Container -->
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8">
-                <h3 class="text-2xl font-semibold mb-4">Your Points</h3>
-                <div class="flex justify-between items-center">
-                    <div>
-                        <p class="text-gray-600">Current Points Balance:</p>
-                        <p class="text-2xl font-bold text-green-600">1,200 Points</p>
-                    </div>
-                    <div>
-                        <p class="text-gray-600">Points Required:</p>
-                        <p class="text-2xl font-bold text-red-600">500 Points</p>
+                <!-- Payment Method Section -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Payment Method</h3>
+                    <p class="text-gray-600 mb-4">We accept payment via QRIS only. Scan the QR code below to complete your top-up.</p>
+                    <div class="text-center">
+                        <img src="https://via.placeholder.com/200x200?text=QRIS+QR+Code" alt="QRIS QR Code" class="mx-auto rounded-lg shadow">
+                        <p class="mt-2 text-sm text-gray-500">Scan with your QRIS-compatible app</p>
                     </div>
                 </div>
-                <p class="mt-4 text-gray-600">After purchase, your remaining balance will be: <span class="font-bold">700 Points</span></p>
-            </div>
 
-            <!-- Payment Section -->
-            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8">
-                <h3 class="text-2xl font-semibold mb-4">Payment Method</h3>
-                <p class="text-gray-600 mb-4">We accept payment via QRIS only. Scan the QR code below to complete your purchase.</p>
-                <div class="text-center">
-                    <img src="https://via.placeholder.com/200x200?text=QRIS+QR+Code" alt="QRIS QR Code" class="mx-auto rounded-lg shadow">
-                    <p class="mt-4 text-sm text-gray-500">Scan with your QRIS-compatible app</p>
-                </div>
-            </div>
+                <!-- Continue to Payment Button -->
+                <a href="{{ route('confirm') }}?package={{ $selected }}"
+                    class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition text-lg block text-center">
+                    Continue to Payment
+                </a>
 
-            <!-- Continue to Payment Button -->
-            <div class="text-center">
-                <button class="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition">Continue to Payment</button>
             </div>
         </div>
     </section>
@@ -140,6 +128,20 @@
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
+        }
+
+        function setAmount(amount) {
+            document.getElementById('topup-amount').value = amount;
+        }
+
+        function continueToPayment() {
+            const amount = document.getElementById('topup-amount').value;
+            if (amount && amount >= 10000) {
+                alert(`Proceeding to payment for Rp ${amount}. In a real app, this would integrate with payment gateway.`);
+                // Here you could redirect to a payment confirmation page or handle payment
+            } else {
+                alert('Please enter a valid amount (minimum Rp 10,000).');
+            }
         }
     </script>
 </body>

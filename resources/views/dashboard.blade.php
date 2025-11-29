@@ -69,13 +69,12 @@
         </div>
     </header>
 
-
     <!-- Hero Section -->
-    <section id="home" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-20">
+    <section id="home" class="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white py-20">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-6xl font-bold mb-4">Welcome Back to Jadi Ngetop</h2>
-            <p class="text-lg md:text-xl mb-8">Ready to boost your visibility? Choose a package and start advertising now.</p>
-            <a href="#packages" class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">Browse Packages</a>
+            <h2 class="text-4xl md:text-6xl font-bold mb-4">Welcome to Jadi Ngetop</h2>
+            <p class="text-lg md:text-xl mb-8">Empowering UMKM, startups, and businesses with effective advertising services in the Telkom community. Boost your visibility and grow your brand today.</p>
+            <a href="#packages" class="bg-white text-yellow-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">Explore Packages</a>
         </div>
     </section>
 
@@ -97,40 +96,67 @@
     <!-- Packages Section -->
     <section id="packages" class="py-20 bg-gray-100">
         <div class="container mx-auto px-4">
-            <h3 class="text-3xl font-bold text-center mb-12">Our Advertising Packages</h3>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Daily Package -->
+            <h3 class="text-3xl font-bold text-center mb-12">Paket Iklan</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Basic Package -->
                 <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h4 class="text-2xl font-semibold mb-4">Daily Package</h4>
-                    <p class="text-gray-600 mb-4">Perfect for short-term boosts. Your ad will be placed in the main TV container on the Telkom community platform for 24 hours.</p>
+                    <h4 class="text-2xl font-semibold mb-4">Basic</h4>
+                    <p class="text-gray-600 mb-4">Perfect for short-term boosts. Your ad will be placed in the main TV container.</p>
                     <ul class="list-disc list-inside mb-4">
                         <li>Placement: Main TV Container</li>
                         <li>Duration: 1 Day</li>
                         <li>Points Required: 100</li>
                     </ul>
-                    <button onclick="purchasePackage('Daily')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Purchase Now</button>
+                    <a href="{{ route('purchase.package') }}?package=silver"
+                        class="bg-blue-600 text-white px-4 py-2 rounded">
+                        Gunakan Paket Ini
+                    </a>
+
                 </div>
-                <!-- Weekly Package -->
+                <!-- Silver Package -->
                 <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h4 class="text-2xl font-semibold mb-4">Weekly Package</h4>
-                    <p class="text-gray-600 mb-4">Ideal for sustained visibility. Your ad appears in the featured TV container for a full week.</p>
+                    <h4 class="text-2xl font-semibold mb-4">Silver</h4>
+                    <p class="text-gray-600 mb-4">Ideal for sustained visibility. Your ad appears in the featured TV container.</p>
                     <ul class="list-disc list-inside mb-4">
                         <li>Placement: Featured TV Container</li>
                         <li>Duration: 7 Days</li>
                         <li>Points Required: 500</li>
                     </ul>
-                    <button onclick="purchasePackage('Weekly')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Purchase Now</button>
+                    <a href="{{ route('purchase.package') }}?package=silver"
+                        class="bg-blue-600 text-white px-4 py-2 rounded">
+                        Gunakan Paket Ini
+                    </a>
+
                 </div>
-                <!-- Monthly Package -->
+                <!-- Premium Package -->
                 <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h4 class="text-2xl font-semibold mb-4">Monthly Package</h4>
-                    <p class="text-gray-600 mb-4">Maximize exposure with prime placement in the premium TV container for an entire month.</p>
+                    <h4 class="text-2xl font-semibold mb-4">Premium</h4>
+                    <p class="text-gray-600 mb-4">Maximize exposure with prime placement in the premium TV container.</p>
                     <ul class="list-disc list-inside mb-4">
                         <li>Placement: Premium TV Container</li>
                         <li>Duration: 30 Days</li>
-                        <li>Points Required: 1500</li>
+                        <li>Points Required: 1,500</li>
                     </ul>
-                    <button onclick="purchasePackage('Monthly')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Purchase Now</button>
+                    <a href="{{ route('purchase.package') }}?package=silver"
+                        class="bg-blue-600 text-white px-4 py-2 rounded">
+                        Gunakan Paket Ini
+                    </a>
+
+                </div>
+                <!-- Gold Package -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h4 class="text-2xl font-semibold mb-4">Gold</h4>
+                    <p class="text-gray-600 mb-4">Ultimate visibility with top placement in the gold TV container for extended reach.</p>
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Placement: Gold TV Container</li>
+                        <li>Duration: 60 Days</li>
+                        <li>Points Required: 3,000</li>
+                    </ul>
+                    <a href="{{ route('purchase.package') }}?package=silver"
+                        class="bg-blue-600 text-white px-4 py-2 rounded">
+                        Gunakan Paket Ini
+                    </a>
+
                 </div>
             </div>
         </div>
@@ -142,21 +168,21 @@
             <h3 class="text-3xl font-bold text-center mb-12">How It Works</h3>
             <div class="grid md:grid-cols-3 gap-8 text-center">
                 <div>
-                    <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div class="bg-yellow-500 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold">1</span>
                     </div>
                     <h4 class="text-xl font-semibold mb-2">Top Up Your Balance</h4>
                     <p>Add funds to your account to build your balance.</p>
                 </div>
                 <div>
-                    <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div class="bg-yellow-500 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold">2</span>
                     </div>
                     <h4 class="text-xl font-semibold mb-2">Convert to Points</h4>
                     <p>Your balance is automatically converted to points for purchasing services.</p>
                 </div>
                 <div>
-                    <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div class="bg-yellow-500 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold">3</span>
                     </div>
                     <h4 class="text-xl font-semibold mb-2">Choose and Purchase</h4>
@@ -180,9 +206,9 @@
             menu.classList.toggle('hidden');
         }
 
-        function purchasePackage(packageType) {
+        function usePackage(packageType) {
             // Simple alert for demonstration; in a real app, this would redirect or handle purchase
-            alert(`Purchasing ${packageType} Package. Redirecting to payment...`);
+            alert(`Using ${packageType} Package. Redirecting to purchase...`);
             // For example, redirect to purchase.html with package parameter
             window.location.href = `purchase.html?package=${packageType}`;
         }

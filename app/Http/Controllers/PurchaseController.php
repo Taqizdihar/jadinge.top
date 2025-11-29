@@ -6,23 +6,15 @@ use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
 {
-    // tampilkan halaman purchase
-    public function index()
+    public function index(Request $request)
     {
-        return view('purchase');
+        $selected = $request->package ?? null;
+
+        return view('purchase', compact('selected'));
     }
 
-    // proses pembelian (opsional)
     public function store(Request $request)
     {
-        // contoh validasi
-        $request->validate([
-            'package' => 'required',
-        ]);
-
-        // simpan data ke session (tanpa db)
-        session(['purchase' => $request->package]);
-
-        return redirect('/purchase')->with('success', 'Package purchased successfully!');
+        // your store logic here
     }
 }

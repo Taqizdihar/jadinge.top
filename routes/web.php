@@ -5,6 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ConfirmController;  
+use App\Http\Controllers\PurchasePackageController;
+
 
 Route::get('/', [PageController::class, 'index'])->name('landing');
 
@@ -20,3 +23,14 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/purchase', [PurchaseController::class, 'index'])->name('purchase');
 Route::post('/purchase', [PurchaseController::class, 'store'])->name('purchase.store');
+
+Route::get('/confirm', [ConfirmController::class, 'index'])->name('confirm');
+Route::post('/confirm', [ConfirmController::class, 'store'])->name('confirm.store');
+
+// Purchase Package Page
+Route::get('/purchase-package', [PurchasePackageController::class, 'index'])
+    ->name('purchase.package');
+
+Route::post('/purchase-package', [PurchasePackageController::class, 'store'])
+    ->name('purchase.package.store');
+
