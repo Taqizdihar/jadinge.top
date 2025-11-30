@@ -75,9 +75,9 @@
             <!-- Current Points -->
             <!-- Current Points -->
             <div class="rounded-2xl p-8 mb-10 text-center shadow-lg
-    text-white
-    bg-[linear-gradient(180deg,#091540_0%,_#0C2C56_40%,_#39B4FC_100%)]
-">
+            text-white
+            bg-[linear-gradient(180deg,#091540_0%,_#0C2C56_40%,_#39B4FC_100%)]
+            ">
                 <h3 class="text-xl font-semibold mb-2">Poin Saya</h3>
 
                 <p class="text-5xl font-bold text-[#F4CE56] drop-shadow">
@@ -168,10 +168,11 @@
 
 
                 <!-- Payment Button -->
-                <a href="#"
+                <a href="{{ route('payment.status', ['invoice' => 'JDN-124532-0123']) }}"
                     class="block w-full mt-8 bg-green-600 text-white text-center py-4 rounded-xl text-xl font-semibold hover:bg-green-700 transition">
                     Lanjutkan Pembayaran
                 </a>
+
 
             </div>
         </div>

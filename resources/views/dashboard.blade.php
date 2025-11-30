@@ -71,7 +71,7 @@
     </header>
 
     <!-- Points Highlight Section (Top Banner) -->
-    <section class="py-10 bg-white">
+    <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center gap-10">
 
@@ -237,7 +237,7 @@
 
 
     <!-- How It Works -->
-    <section id="how-it-works" class="py-20 bg-gray-100">
+    <section id="how-it-works" class="py-20 bg-white border-t border-gray-200">
         <div class="container mx-auto px-4">
             <h3 class="text-3xl font-bold text-center mb-12">How It Works</h3>
 

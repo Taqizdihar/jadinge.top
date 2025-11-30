@@ -92,8 +92,6 @@
                 <div class="bg-[#FFCD17] px-6 py-3">
                     <p class="text-xl font-semibold text-black">30 Hari</p>
                 </div>
-
-                <!-- CONTENT -->
                 <div class="p-6">
 
                     <h3 class="text-2xl font-bold mb-2">Paket Gold</h3>
@@ -142,23 +140,54 @@
 
             </div>
 
-            <!-- PAYMENT METHOD -->
-            <div class="bg-white rounded-2xl shadow p-6 border mb-10">
-
+            <!-- PAYMENT METHOD (static-not enough poin) -->
+            <div class="bg-white rounded-2xl shadow p-6 border mb-10 max-w-3xl mx-auto">
                 <h3 class="text-xl font-semibold mb-4">Metode Pembayaran</h3>
 
-                <p class="text-gray-600 mb-4">Gunakan QRIS untuk menyelesaikan transaksi.</p>
+                <!-- Balance Info -->
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-yellow-100 border border-yellow-400">
+                            <span class="text-yellow-600 font-bold">S</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Saldo Poin Anda</p>
+                            <p class="text-gray-600 text-sm">300 Poin</p>
+                        </div>
+                    </div>
 
-                <div class="text-center mb-6">
-                    <img src="https://via.placeholder.com/180x180?text=QRIS"
-                        class="mx-auto rounded-lg shadow">
+                    <!-- Toggle DISABLED -->
+                    <!-- Toggle ACTIVE -->
+                    <label class="relative inline-flex items-center cursor-pointer select-none">
+                        <input type="checkbox" class="sr-only peer" checked>
+
+                        <!-- Track ON -->
+                        <div class="w-12 h-6 bg-green-500 rounded-full peer-checked:bg-green-500 transition"></div>
+
+                        <!-- Knob bergerak -->
+                        <div class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow 
+                transition peer-checked:translate-x-6"></div>
+                    </label>
+
                 </div>
 
-                <p class="text-sm text-gray-500 text-center">
-                    Scan QR untuk menyelesaikan pembayaran.
+                <!-- Error Message -->
+                <p class="text-red-600 font-medium bg-red-50 p-4 rounded-lg flex items-center gap-2">
+                    <span>Saldo Poin Tidak Cukup</span>
+                    <span class="text-gray-400 cursor-pointer">?</span>
                 </p>
 
+                <p class="text-gray-600 mb-4 mt-2 text-sm">
+                    Anda membutuhkan 500 poin untuk membeli paket ini. Silakan lakukan top up terlebih dahulu.
+                </p>
+
+                <div class="text-center">
+                    <a href="{{ route('purchase') }}" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                        Top Up Poin
+                    </a>
+                </div>
             </div>
+
 
             <!-- BUTTON FINAL -->
             <button class="w-full bg-green-600 text-white text-xl font-semibold py-4 rounded-xl shadow hover:bg-green-700 transition">

@@ -7,6 +7,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ConfirmController;  
 use App\Http\Controllers\PurchasePackageController;
+use App\Http\Controllers\PaymentStatusController;
 
 
 Route::get('/', [PageController::class, 'index'])->name('landing');
@@ -33,4 +34,9 @@ Route::get('/purchase-package', [PurchasePackageController::class, 'index'])
 
 Route::post('/purchase-package', [PurchasePackageController::class, 'store'])
     ->name('purchase.package.store');
+    
+Route::get('/payment/status/{invoice}', [PaymentStatusController::class, 'show'])
+    ->name('payment.status');
 
+Route::get('/payment/status/{invoice}/check', [PaymentStatusController::class, 'check'])
+    ->name('payment.status.check');
