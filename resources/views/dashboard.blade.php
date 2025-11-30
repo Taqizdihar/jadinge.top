@@ -18,7 +18,8 @@
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-900">
+<body class="text-gray-900 bg-[linear-gradient(to_bottom,_#FFCD17_10%,_#FEF9E6_100%)]">
+
     <!-- Header -->
     <header class="bg-white shadow-md">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -38,7 +39,7 @@
                 <form action="{{ route('logout') }}" method="POST" class="inline">
                     @csrf
                     <button type="submit"
-                        class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">
+                        class="border border-gray-300 px-4 py-1.5 rounded-lg hover:bg-[#FEF9E6] transition">
                         Logout
                     </button>
                 </form>
@@ -69,125 +70,203 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white py-20">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-6xl font-bold mb-4">Welcome to Jadi Ngetop</h2>
-            <p class="text-lg md:text-xl mb-8">Empowering UMKM, startups, and businesses with effective advertising services in the Telkom community. Boost your visibility and grow your brand today.</p>
-            <a href="#packages" class="bg-white text-yellow-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">Explore Packages</a>
-        </div>
-    </section>
-
-    <!-- Points Container Section -->
+    <!-- Points Highlight Section (Top Banner) -->
     <section class="py-10 bg-white">
-        <div class="container mx-auto px-4 max-w-2xl">
-            <div class="bg-green-50 p-6 rounded-lg shadow-md text-center">
-                <h3 class="text-2xl font-semibold mb-4">Your Points Balance</h3>
-                <p class="text-4xl font-bold text-green-600 mb-4">1,200 Points</p>
-                <p class="text-gray-600">Use your points to purchase advertising packages. Top up anytime to increase your balance.</p>
-                <a href="{{ route('purchase') }}"
-                    class="mt-4 inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
-                    Top Up Points
-                </a>
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-10">
+
+                <!-- Gradient Point Card -->
+                <div class="flex-1 p-8 rounded-3xl shadow-lg relative overflow-hidden
+            bg-[linear-gradient(180deg,#091540_0%,_#0C2C56_40%,_#39B4FC_90%)]
+            text-white">
+
+                    <!-- Decorative Circle -->
+                    <div class="absolute right-0 top-0 w-80 h-80 rounded-full 
+                    bg-[#F2C230] opacity-50 translate-x-10 -translate-y-10"></div>
+
+
+                    <div class="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                        <!-- LEFT TEXT -->
+                        <div>
+                            <h3 class="text-2xl font-semibold mb-2">Poin Saya</h3>
+                            <p class="text-5xl font-bold mb-1">1,200</p>
+                            <p class="text-white/80">Gunakan poin untuk membeli berbagai paket iklan.</p>
+                        </div>
+
+                        <!-- BUTTON -->
+                        <a href="{{ route('purchase') }}"
+                            class="bg-[#FFF7D1] text-black px-6 py-3 rounded-xl shadow-sm font-semibold hover:bg-[#f3eac7] transition">
+                            Top Up Points
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Welcome Text -->
+                <div class="flex-1">
+                    <h2 class="text-3xl font-bold mb-3">Selamat Datang Kembali!</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        Temukan berbagai paket iklan premium yang dirancang untuk memperluas jangkauan bisnis Anda.
+                        Tingkatkan visibilitas dan capai tujuan pemasaran Anda dengan mudah.
+                    </p>
+                </div>
+
             </div>
         </div>
     </section>
 
     <!-- Packages Section -->
-    <section id="packages" class="py-20 bg-gray-100">
+    <section class="text-gray-900 bg-[linear-gradient(to_bottom,_#FFCD17_10%,_#FEF9E6_100%)] py-20">
         <div class="container mx-auto px-4">
             <h3 class="text-3xl font-bold text-center mb-12">Paket Iklan</h3>
+
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Basic Package -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h4 class="text-2xl font-semibold mb-4">Basic</h4>
-                    <p class="text-gray-600 mb-4">Perfect for short-term boosts. Your ad will be placed in the main TV container.</p>
-                    <ul class="list-disc list-inside mb-4">
-                        <li>Placement: Main TV Container</li>
-                        <li>Duration: 1 Day</li>
-                        <li>Points Required: 100</li>
+
+                <!-- Paket Basic -->
+                <div class="bg-white p-8 rounded-3xl shadow-md border">
+                    <h4 class="text-3xl font-bold mb-3">Paket Basic</h4>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Tingkatkan visibilitas iklan Anda dengan penempatan standar selama 7 hari.
+                    </p>
+
+                    <hr class="my-6">
+
+                    <h5 class="text-xl font-semibold mb-4">Fitur Utama</h5>
+
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center gap-2">
+                            <span class="text-yellow-500 text-lg">✔️</span> Tampil di halaman utama
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-yellow-500 text-lg">✔️</span> Tampil di halaman utama
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-yellow-500 text-lg">✔️</span> Tampil di halaman utama
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-yellow-500 text-lg">✔️</span> Tampil di halaman utama
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-yellow-500 text-lg">✔️</span> Tampil di halaman utama
+                        </li>
                     </ul>
-                    <a href="{{ route('purchase.package') }}?package=silver"
-                        class="bg-blue-600 text-white px-4 py-2 rounded">
+
+                    <p class="text-3xl font-bold text-yellow-500 mb-1">250 Poin</p>
+                    <p class="text-gray-700 mb-6">7 Hari</p>
+
+                    <a href="{{ route('purchase.package') }}?package=basic"
+                        class="block w-full text-center bg-black text-white py-3 rounded-xl font-semibold">
                         Gunakan Paket Ini
                     </a>
-
                 </div>
-                <!-- Silver Package -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h4 class="text-2xl font-semibold mb-4">Silver</h4>
-                    <p class="text-gray-600 mb-4">Ideal for sustained visibility. Your ad appears in the featured TV container.</p>
-                    <ul class="list-disc list-inside mb-4">
-                        <li>Placement: Featured TV Container</li>
-                        <li>Duration: 7 Days</li>
-                        <li>Points Required: 500</li>
+
+                <!-- Paket Silver -->
+                <div class="bg-white p-8 rounded-3xl shadow-md border">
+                    <h4 class="text-3xl font-bold mb-3">Paket Silver</h4>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Ideal untuk visibilitas lebih lama dengan penempatan di featured container.
+                    </p>
+
+                    <hr class="my-6">
+
+                    <h5 class="text-xl font-semibold mb-4">Fitur Utama</h5>
+
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center gap-2"><span class="text-yellow-500">✔️</span> Tampil di featured container</li>
                     </ul>
+
+                    <p class="text-3xl font-bold text-yellow-500 mb-1">500 Poin</p>
+                    <p class="text-gray-700 mb-6">7 Hari</p>
+
                     <a href="{{ route('purchase.package') }}?package=silver"
-                        class="bg-blue-600 text-white px-4 py-2 rounded">
+                        class="block w-full text-center bg-black text-white py-3 rounded-xl font-semibold">
                         Gunakan Paket Ini
                     </a>
-
                 </div>
-                <!-- Premium Package -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h4 class="text-2xl font-semibold mb-4">Premium</h4>
-                    <p class="text-gray-600 mb-4">Maximize exposure with prime placement in the premium TV container.</p>
-                    <ul class="list-disc list-inside mb-4">
-                        <li>Placement: Premium TV Container</li>
-                        <li>Duration: 30 Days</li>
-                        <li>Points Required: 1,500</li>
+
+                <!-- Paket Premium -->
+                <div class="bg-white p-8 rounded-3xl shadow-md border">
+                    <h4 class="text-3xl font-bold mb-3">Paket Premium</h4>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Maksimalkan exposure dengan penempatan premium selama 30 hari.
+                    </p>
+
+                    <hr class="my-6">
+
+                    <h5 class="text-xl font-semibold mb-4">Fitur Utama</h5>
+
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center gap-2"><span class="text-yellow-500">✔️</span> Tampil di premium container</li>
                     </ul>
-                    <a href="{{ route('purchase.package') }}?package=silver"
-                        class="bg-blue-600 text-white px-4 py-2 rounded">
+
+                    <p class="text-3xl font-bold text-yellow-500 mb-1">1500 Poin</p>
+                    <p class="text-gray-700 mb-6">30 Hari</p>
+
+                    <a href="{{ route('purchase.package') }}?package=premium"
+                        class="block w-full text-center bg-black text-white py-3 rounded-xl font-semibold">
                         Gunakan Paket Ini
                     </a>
-
                 </div>
-                <!-- Gold Package -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h4 class="text-2xl font-semibold mb-4">Gold</h4>
-                    <p class="text-gray-600 mb-4">Ultimate visibility with top placement in the gold TV container for extended reach.</p>
-                    <ul class="list-disc list-inside mb-4">
-                        <li>Placement: Gold TV Container</li>
-                        <li>Duration: 60 Days</li>
-                        <li>Points Required: 3,000</li>
+
+                <!-- Paket Gold -->
+                <div class="bg-white p-8 rounded-3xl shadow-md border">
+                    <h4 class="text-3xl font-bold mb-3">Paket Gold</h4>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Visibilitas terbaik dengan penempatan tertinggi selama 60 hari.
+                    </p>
+
+                    <hr class="my-6">
+
+                    <h5 class="text-xl font-semibold mb-4">Fitur Utama</h5>
+
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center gap-2"><span class="text-yellow-500">✔️</span> Tampil di gold container</li>
                     </ul>
-                    <a href="{{ route('purchase.package') }}?package=silver"
-                        class="bg-blue-600 text-white px-4 py-2 rounded">
+
+                    <p class="text-3xl font-bold text-yellow-500 mb-1">3000 Poin</p>
+                    <p class="text-gray-700 mb-6">60 Hari</p>
+
+                    <a href="{{ route('purchase.package') }}?package=gold"
+                        class="block w-full text-center bg-black text-white py-3 rounded-xl font-semibold">
                         Gunakan Paket Ini
                     </a>
-
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="py-20 bg-white">
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-20 bg-gray-100">
         <div class="container mx-auto px-4">
             <h3 class="text-3xl font-bold text-center mb-12">How It Works</h3>
+
             <div class="grid md:grid-cols-3 gap-8 text-center">
+
                 <div>
-                    <div class="bg-yellow-500 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold">1</span>
                     </div>
                     <h4 class="text-xl font-semibold mb-2">Top Up Your Balance</h4>
-                    <p>Add funds to your account to build your balance.</p>
+                    <p>Add funds to your account...</p>
                 </div>
+
                 <div>
-                    <div class="bg-yellow-500 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold">2</span>
                     </div>
                     <h4 class="text-xl font-semibold mb-2">Convert to Points</h4>
-                    <p>Your balance is automatically converted to points for purchasing services.</p>
+                    <p>Your balance is converted to points...</p>
                 </div>
+
                 <div>
-                    <div class="bg-yellow-500 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold">3</span>
                     </div>
                     <h4 class="text-xl font-semibold mb-2">Choose and Purchase</h4>
-                    <p>Select a package and use your points to advertise in the specified TV containers.</p>
+                    <p>Select a package and advertise...</p>
                 </div>
+
             </div>
         </div>
     </section>

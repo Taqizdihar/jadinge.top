@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,141 +15,159 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
+
         .yellow-accent {
             background-color: #FFC800;
         }
+
         .soft-yellow {
             background-color: #FFF8E1;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+
+<body class="text-gray-900 bg-[#FEF9E6]">
+
     <!-- Header -->
     <header class="bg-white shadow-md">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-blue-600"><a href="dashboard.html">Jadi Ngetop</a></h1>
+            <h1 class="text-2xl font-bold text-blue-600">Jadi Ngetop</h1>
+
             <nav class="hidden md:flex space-x-6 items-center">
-                <a href="dashboard.html" class="text-gray-700 hover:text-blue-600">Home</a>
-                <a href="#packages" class="text-gray-700 hover:text-blue-600">Paket Iklan</a>
+                <a href="#home" class="text-gray-700 hover:text-blue-600">Home</a>
+                <a href="#packages" class="text-gray-700 hover:text-blue-600">Packages</a>
                 <a href="#how-it-works" class="text-gray-700 hover:text-blue-600">How It Works</a>
                 <a href="#contact" class="text-gray-700 hover:text-blue-600">Contact</a>
-                <!-- Points Container in Header -->
+
                 <div class="bg-green-100 px-4 py-2 rounded-lg">
                     <span class="text-green-800 font-semibold">Points: 1,200</span>
                 </div>
-                <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">Logout</button>
+
+                <!-- LOGOUT BUTTON FIX -->
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit"
+                        class="border border-gray-300 px-4 py-1.5 rounded-lg hover:bg-[#FEF9E6] transition">
+                        Logout
+                    </button>
+                </form>
             </nav>
+
             <button class="md:hidden text-gray-700" onclick="toggleMenu()">Menu</button>
         </div>
+
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-            <a href="dashboard.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
-            <a href="#packages" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Paket Iklan</a>
+            <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
+            <a href="#packages" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Packages</a>
             <a href="#how-it-works" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">How It Works</a>
             <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contact</a>
+
             <div class="block px-4 py-2 bg-green-100">
                 <span class="text-green-800 font-semibold">Points: 1,200</span>
             </div>
-            <button class="block w-full text-left px-4 py-2 bg-red-600 text-white hover:bg-red-700">Logout</button>
+
+            <!-- LOGOUT MOBILE FIX -->
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit"
+                    class="block w-full text-left px-4 py-2 bg-red-600 text-white hover:bg-red-700">
+                    Logout
+                </button>
+            </form>
         </div>
     </header>
 
-    <!-- Payment Summary Container -->
-    <section class="py-10 bg-white">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-3xl font-bold mb-6 text-center">Payment Summary</h2>
-            <div class="yellow-accent p-8 rounded-lg shadow-lg text-white">
-                <h3 class="text-2xl font-semibold mb-4">Selected Package: Silver</h3>
-                <div class="bg-white text-gray-900 p-6 rounded-lg">
-                    <p class="text-lg mb-2"><strong>Package Name:</strong> Silver Package</p>
-                    <p class="text-lg mb-2"><strong>Duration:</strong> 7 Days</p>
-                    <p class="text-gray-600 mb-4">Ideal for sustained visibility. Your ad appears in the featured TV container for a full week, reaching a targeted audience in the Telkom community.</p>
-                    <p class="text-lg mb-4"><strong>Key Features:</strong></p>
-                    <ul class="list-disc list-inside mb-4">
-                        <li>Placement: Featured TV Container</li>
-                        <li>High visibility and engagement</li>
-                        <li>Automatic ad placement and management</li>
+    <!-- PAYMENT WRAPPER -->
+    <section class="py-10 bg-transparent">
+        <div class="container mx-auto px-4 max-w-3xl">
+
+            <!-- TITLE -->
+            <h2 class="text-3xl font-bold text-center mb-8">Pembayaran</h2>
+
+            <!-- PACKAGE CARD -->
+            <div class="bg-white rounded-2xl shadow border border-yellow-300 overflow-hidden mb-10">
+
+                <!-- HEADER -->
+                <div class="bg-[#FFCD17] px-6 py-3">
+                    <p class="text-xl font-semibold text-black">30 Hari</p>
+                </div>
+
+                <!-- CONTENT -->
+                <div class="p-6">
+
+                    <h3 class="text-2xl font-bold mb-2">Paket Gold</h3>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Tingkatkan visibilitas iklan Anda dengan penempatan standar selama 30 hari.
+                    </p>
+
+                    <!-- FEATURES -->
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2">
+                            <span class="text-yellow-500">✔</span> Tampil di halaman utama
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-yellow-500">✔</span> Tampil di featured container
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-yellow-500">✔</span> Penempatan prioritas
+                        </li>
                     </ul>
-                    <p class="text-2xl font-bold text-blue-600">Total Points Required: 500</p>
+
+                    <p class="text-3xl text-yellow-500 font-extrabold">1500 Poin</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Order Breakdown Container -->
-    <section class="py-10 bg-gray-50">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <div class="bg-white p-8 rounded-lg shadow-lg">
-                <h3 class="text-2xl font-semibold mb-4">Order Breakdown</h3>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div>
-                        <p><strong>Package Type:</strong> Silver</p>
-                        <p><strong>Duration:</strong> 7 Days</p>
-                    </div>
-                    <div>
-                        <p><strong>Final Calculated Total:</strong></p>
-                        <p class="text-2xl font-bold text-blue-600">500 Points</p>
-                    </div>
+            <!-- ORDER BREAKDOWN -->
+            <div class="bg-white rounded-2xl shadow p-6 mb-10 border">
+
+                <h3 class="text-xl font-semibold mb-4">Rincian Pembayaran</h3>
+
+                <div class="flex justify-between py-2 text-gray-700">
+                    <span>Paket</span>
+                    <span class="font-medium">Paket Gold</span>
                 </div>
+
+                <div class="flex justify-between py-2 text-gray-700">
+                    <span>Durasi</span>
+                    <span class="font-medium">30 Hari</span>
+                </div>
+
+                <hr class="my-3">
+
+                <div class="flex justify-between py-1">
+                    <span class="font-bold text-lg">Total Pembayaran</span>
+                    <span class="font-bold text-lg">1500 Poin</span>
+                </div>
+
             </div>
-        </div>
-    </section>
 
-    <!-- Payment Confirmation Button -->
-    <section class="py-10 bg-white">
-        <div class="container mx-auto px-4 max-w-4xl text-center">
-            <button onclick="proceedToCheckout()" class="yellow-accent text-white px-12 py-4 rounded-lg font-semibold hover:opacity-90 transition text-xl">Proceed to Checkout</button>
-        </div>
-    </section>
+            <!-- PAYMENT METHOD -->
+            <div class="bg-white rounded-2xl shadow p-6 border mb-10">
 
-    <!-- Full Checkout Page (Initially Hidden) -->
-    <section id="full-checkout" class="py-10 bg-gray-50 hidden">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <div class="bg-white p-8 rounded-lg shadow-lg">
-                <h2 class="text-3xl font-bold mb-6 text-center">Detailed Payment Breakdown</h2>
-                <div class="mb-6">
-                    <h3 class="text-xl font-semibold mb-4">Package Benefits</h3>
-                    <ul class="list-disc list-inside text-gray-600">
-                        <li>Increased visibility in Telkom community</li>
-                        <li>Targeted audience reach for UMKM and businesses</li>
-                        <li>Easy ad management and instant activation</li>
-                        <li>Professional placement in featured containers</li>
-                    </ul>
-                </div>
-                <div class="grid md:grid-cols-2 gap-4 mb-6">
-                    <div>
-                        <p><strong>Duration:</strong> 7 Days</p>
-                        <p><strong>Price:</strong> 500 Points</p>
-                    </div>
-                    <div>
-                        <p><strong>Total Points Required:</strong></p>
-                        <p class="text-2xl font-bold text-blue-600">500 Points</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                <h3 class="text-xl font-semibold mb-4">Metode Pembayaran</h3>
 
-    <!-- Payment Method Container -->
-    <section id="payment-method" class="py-10 bg-white hidden">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <div class="bg-white p-8 rounded-lg shadow-lg">
-                <h3 class="text-2xl font-semibold mb-4 text-center">Payment Method</h3>
-                <p class="text-gray-600 mb-6 text-center">Complete your payment through QRIS. Scan the QR code below with your compatible app.</p>
+                <p class="text-gray-600 mb-4">Gunakan QRIS untuk menyelesaikan transaksi.</p>
+
                 <div class="text-center mb-6">
-                    <img src="https://via.placeholder.com/200x200?text=QRIS+QR+Code" alt="QRIS QR Code" class="mx-auto rounded-lg shadow">
+                    <img src="https://via.placeholder.com/180x180?text=QRIS"
+                        class="mx-auto rounded-lg shadow">
                 </div>
-                <p class="text-sm text-gray-500 text-center">Instructions: Open your QRIS app, scan the code, and confirm the payment.</p>
+
+                <p class="text-sm text-gray-500 text-center">
+                    Scan QR untuk menyelesaikan pembayaran.
+                </p>
+
             </div>
+
+            <!-- BUTTON FINAL -->
+            <button class="w-full bg-green-600 text-white text-xl font-semibold py-4 rounded-xl shadow hover:bg-green-700 transition">
+                Bayar Sekarang
+            </button>
+
         </div>
     </section>
 
-    <!-- Final Payment Button -->
-    <section id="final-button" class="py-10 bg-gray-50 hidden">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <button onclick="payNow()" class="w-full yellow-accent text-white py-4 rounded-lg font-semibold hover:opacity-90 transition text-xl">Bayar Sekarang</button>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
@@ -170,7 +189,9 @@
             document.getElementById('payment-method').classList.remove('hidden');
             document.getElementById('final-button').classList.remove('hidden');
             // Optionally scroll to it
-            document.getElementById('full-checkout').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('full-checkout').scrollIntoView({
+                behavior: 'smooth'
+            });
         }
 
         function payNow() {
@@ -180,4 +201,5 @@
         }
     </script>
 </body>
+
 </html>

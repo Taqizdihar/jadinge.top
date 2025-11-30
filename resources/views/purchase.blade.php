@@ -38,7 +38,7 @@
                 <form action="{{ route('logout') }}" method="POST" class="inline">
                     @csrf
                     <button type="submit"
-                        class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">
+                        class="border border-gray-300 px-4 py-1.5 rounded-lg hover:bg-[#FEF9E6] transition">
                         Logout
                     </button>
                 </form>
@@ -69,52 +69,120 @@
         </div>
     </header>
 
-    <!-- Top Up Page Content -->
-    <section class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4 max-w-md">
-            <div class="bg-white p-8 rounded-lg shadow-lg">
-                <!-- Current Points Highlighted Card -->
-                <div class="bg-blue-100 p-4 rounded-lg mb-6 text-center">
-                    <h3 class="text-lg font-semibold text-blue-800 mb-2">Current Points</h3>
-                    <p class="text-3xl font-bold text-blue-600">1,200 Points</p>
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6 max-w-3xl">
+
+            <!-- Current Points -->
+            <!-- Current Points -->
+            <div class="rounded-2xl p-8 mb-10 text-center shadow-lg
+    text-white
+    bg-[linear-gradient(180deg,#091540_0%,_#0C2C56_40%,_#39B4FC_100%)]
+">
+                <h3 class="text-xl font-semibold mb-2">Poin Saya</h3>
+
+                <p class="text-5xl font-bold text-[#F4CE56] drop-shadow">
+                    1,200
+                </p>
+
+                <p class="text-white/80 text-sm mt-2">
+                    Saldo Anda dikonversi menjadi poin untuk pembelian paket iklan.
+                </p>
+            </div>
+
+
+
+            <!-- Form Box -->
+            <div class="bg-white rounded-2xl shadow-md p-8 border border-[#f2e7c5]">
+
+                <!-- Input Amount -->
+                <label class="block text-gray-700 font-semibold mb-2 text-lg">
+                    Masukkan Jumlah (Rp)
+                </label>
+
+                <div class="border border-[#D39D2C] bg-[#FFF7D1] rounded-xl flex items-center px-5 py-4 mb-6">
+                    <span class="text-xl font-semibold text-gray-700 mr-3">Rp</span>
+                    <input
+                        id="topup-amount"
+                        type="number"
+                        class="w-full bg-transparent outline-none text-4xl font-bold text-gray-900"
+                        placeholder="0">
                 </div>
 
-                <!-- Top-Up Amount Input -->
-                <div class="mb-6">
-                    <label for="topup-amount" class="block text-gray-700 font-semibold mb-2">Top-Up Amount (Rupiah)</label>
-                    <input type="number" id="topup-amount" name="topup-amount" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter amount in Rupiah" min="10000">
+                <p class="text-gray-600 mb-4">Rp 10.000 = 10 Poin.</p>
+
+                <!-- Quick Select -->
+                <div class="grid grid-cols-2 gap-4 mb-10">
+                    <button onclick="setAmount(50000)"
+                        class="bg-[#FFF7D1] border border-[#E5C261] text-gray-800 py-4 rounded-xl text-lg font-semibold hover:bg-[#ffefb3] transition">
+                        + Rp 50.000
+                    </button>
+
+                    <button onclick="setAmount(100000)"
+                        class="bg-[#FFF7D1] border border-[#E5C261] text-gray-800 py-4 rounded-xl text-lg font-semibold hover:bg-[#ffefb3] transition">
+                        + Rp 100.000
+                    </button>
+
+                    <button onclick="setAmount(250000)"
+                        class="bg-[#FFF7D1] border border-[#E5C261] text-gray-800 py-4 rounded-xl text-lg font-semibold hover:bg-[#ffefb3] transition">
+                        + Rp 250.000
+                    </button>
+
+                    <button onclick="setAmount(500000)"
+                        class="bg-[#FFF7D1] border border-[#E5C261] text-gray-800 py-4 rounded-xl text-lg font-semibold hover:bg-[#ffefb3] transition">
+                        + Rp 500.000
+                    </button>
                 </div>
 
-                <!-- Quick-Select Buttons -->
-                <div class="mb-6">
-                    <p class="text-gray-700 font-semibold mb-2">Quick Select:</p>
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="setAmount(50000)" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Rp 50,000</button>
-                        <button onclick="setAmount(100000)" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Rp 100,000</button>
-                        <button onclick="setAmount(200000)" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Rp 200,000</button>
-                        <button onclick="setAmount(500000)" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Rp 500,000</button>
-                    </div>
+                <!-- Payment Method -->
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Metode Pembayaran</h3>
+
+                <div class="bg-white border border-[#E5C261] rounded-xl p-6 text-center shadow-sm">
+                    <p class="text-gray-600 mb-4">Pembayaran menggunakan QRIS.</p>
+
+                    <!-- QR IMAGE -->
+                    <img src="https://via.placeholder.com/240x240?text=QRIS"
+                        class="mx-auto shadow-md rounded-lg mb-3">
+
+                    <p class="text-sm text-gray-500">Scan dengan aplikasi yang mendukung QRIS</p>
                 </div>
 
-                <!-- Payment Method Section -->
-                <div class="mb-6">
-                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Payment Method</h3>
-                    <p class="text-gray-600 mb-4">We accept payment via QRIS only. Scan the QR code below to complete your top-up.</p>
-                    <div class="text-center">
-                        <img src="https://via.placeholder.com/200x200?text=QRIS+QR+Code" alt="QRIS QR Code" class="mx-auto rounded-lg shadow">
-                        <p class="mt-2 text-sm text-gray-500">Scan with your QRIS-compatible app</p>
-                    </div>
+                <!-- QRIS Instructions -->
+                <div class="mt-10 bg-white border border-[#E5C261] rounded-2xl p-8 shadow-sm">
+
+                    <h3 class="text-0.5xl font-bold mb-6 text-gray-800">
+                        CARA PEMBAYARAN MENGGUNAKAN QRIS
+                    </h3>
+
+                    <ol class="list-decimal pl-6 space-y-3 text-gray-700 leading-relaxed text-md">
+                        <li>Anda harus terdaftar sebagai pengguna aplikasi uang elektronik, dompet elektronik, atau mobile banking yang mendukung <strong>QRIS</strong>.</li>
+
+                        <li>Anda akan diarahkan ke halaman pembayaran <strong>QRIS</strong>.</li>
+
+                        <li>Cek kembali nominal transaksi kamu, lalu scan QR Code menggunakan aplikasi uang elektronik, dompet elektronik, atau mobile banking yang mendukung <strong>QRIS</strong>.</li>
+
+                        <li>Masukkan PIN untuk melanjutkan transaksi.</li>
+
+                        <li>Transaksi selesai.</li>
+                    </ol>
                 </div>
 
-                <!-- Continue to Payment Button -->
-                <a href="{{ route('confirm') }}?package={{ $selected }}"
-                    class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition text-lg block text-center">
-                    Continue to Payment
+
+                <!-- Payment Button -->
+                <a href="#"
+                    class="block w-full mt-8 bg-green-600 text-white text-center py-4 rounded-xl text-xl font-semibold hover:bg-green-700 transition">
+                    Lanjutkan Pembayaran
                 </a>
 
             </div>
         </div>
     </section>
+
+    <script>
+        function setAmount(value) {
+            document.getElementById("topup-amount").value = value;
+        }
+    </script>
+
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
