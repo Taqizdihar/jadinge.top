@@ -64,7 +64,12 @@
 
                 <!-- Icon -->
                 <span class="text-[#E92929] text-xl">
-                    ⏱
+                    <img
+                        src="https://img.icons8.com/ios-glyphs/30/timer.png"
+                        alt="timer"
+                        class="w-[30px] h-[30px]"
+                        style="filter: invert(24%) sepia(93%) saturate(7483%) hue-rotate(356deg) brightness(96%) contrast(112%);" />
+
                 </span>
 
                 <!-- Text -->

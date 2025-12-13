@@ -8,7 +8,17 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ConfirmController;  
 use App\Http\Controllers\PurchasePackageController;
 use App\Http\Controllers\PaymentStatusController;
+use App\Http\Controllers\AdsController;
+use App\Http\Controllers\AdsDetailController;
 
+Route::get('/ads', [AdsController::class, 'create'])->name('ads.create');
+
+// halaman detail
+Route::get('/ads/detail', [AdsDetailController::class, 'index'])
+    ->name('ads.detail');
+
+Route::get('/ads', [AdsController::class, 'create'])->name('ads.create');
+Route::post('/ads', [AdsController::class, 'store'])->name('ads.store');
 
 Route::get('/', [PageController::class, 'index'])->name('landing');
 
