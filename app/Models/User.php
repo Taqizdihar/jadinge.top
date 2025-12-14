@@ -23,4 +23,4 @@ class User extends Model {
     public function isAdmin(): bool {
         return $this->role === 'admin';
     }
-}
+} //
