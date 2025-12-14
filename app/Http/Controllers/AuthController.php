@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    // SHOW FORMS
+    // FORM
     public function loginForm()
     {
         return view('login');
@@ -18,8 +19,7 @@ class AuthController extends Controller
         return view('register');
     }
 
-
-
+    // REGISTER
     public function register(Request $request)
     {
         $request->validate([
@@ -34,40 +34,43 @@ class AuthController extends Controller
             'email'    => $request->email,
             'username' => $request->username,
             'password' => bcrypt($request->password),
+            'role'     => 'user', // default user
         ]);
 
-        return redirect('/login')->with('success', 'Registration successful, please login.');
+        return redirect('/login')->with('success', 'Registration successful');
     }
 
-
+    // 🔥 LOGIN FIX
     public function login(Request $request)
     {
-        $request->validate([
-            'username' => 'required',
+        $credentials = $request->validate([
+            'email'    => 'required|email',
             'password' => 'required',
         ]);
 
-        $user = User::where('username', $request->username)->first();
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-        if (!$user || !password_verify($request->password, $user->password)) {
-            return back()->withErrors(['username' => 'Invalid username or password.']);
+            // 🔐 ROLE CHECK
+            if (auth()->user()->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            }
+
+            return redirect('/dashboard');
         }
 
-        // Set session
-        session([
-            'logged_in' => true,
-            'current_user' => $user,
+        return back()->withErrors([
+            'email' => 'Email atau password salah',
         ]);
-
-        return redirect('/dashboard');
     }
-
 
     // LOGOUT
     public function logout(Request $request)
     {
-        session()->forget('logged_in');
-        session()->forget('current_user');
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         return redirect('/login');
     }
