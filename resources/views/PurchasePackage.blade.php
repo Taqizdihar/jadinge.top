@@ -19,61 +19,115 @@
 <body class="min-h-screen bg-gray-50">
 
     <!-- Header -->
-    <header class="bg-white shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-            <div class="flex items-center">
-                <span class="text-sm text-gray-500 mr-4">Profile</span>
-                <h1 class="text-2xl font-bold text-yellow-500">Jadi.Ngetop</h1>
-            </div>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#" class="text-gray-700 hover:text-gray-900">Beranda</a>
-                <a href="#" class="text-gray-700 hover:text-gray-900">Paket</a>
-                <a href="#" class="text-gray-700 hover:text-gray-900">Cara Bayar</a>
-            </nav>
-            <div class="flex items-center gap-4">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-blue-600">Jadi Ngetop</h1>
+
+            <nav class="hidden md:flex space-x-6 items-center">
+                <a href="#home" class="text-gray-700 hover:text-blue-600">Home</a>
+                <a href="#packages" class="text-gray-700 hover:text-blue-600">Packages</a>
+                <a href="#how-it-works" class="text-gray-700 hover:text-blue-600">How It Works</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600">Contact</a>
+
                 <div class="bg-green-100 px-4 py-2 rounded-lg">
                     <span class="text-green-800 font-semibold">Points: 1,200</span>
                 </div>
-                <button class="px-4 py-2 border rounded-lg">Masuk</button>
+
+                <!-- LOGOUT BUTTON FIX -->
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit"
+                        class="border border-gray-300 px-4 py-1.5 rounded-lg hover:bg-[#FEF9E6] transition">
+                        Logout
+                    </button>
+                </form>
+            </nav>
+
+            <button class="md:hidden text-gray-700" onclick="toggleMenu()">Menu</button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
+            <a href="#packages" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Packages</a>
+            <a href="#how-it-works" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">How It Works</a>
+            <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contact</a>
+
+            <div class="block px-4 py-2 bg-green-100">
+                <span class="text-green-800 font-semibold">Points: 1,200</span>
             </div>
+
+            <!-- LOGOUT MOBILE FIX -->
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit"
+                    class="block w-full text-left px-4 py-2 bg-red-600 text-white hover:bg-red-700">
+                    Logout
+                </button>
+            </form>
         </div>
     </header>
 
     <!-- Main -->
     <main class="max-w-7xl mx-auto px-4 py-8">
 
-        <!-- Progress -->
-        <div class="flex justify-center mb-12">
-            <div class="flex items-center space-x-6">
-                <div class="text-center">
-                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white">✓</div>
-                    <p class="text-sm font-medium mt-2">PILIH PAKET</p>
-                </div>
-                <div class="w-20 h-1 bg-gray-300"></div>
-                <div class="text-center">
-                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">2</div>
-                    <p class="text-sm font-medium mt-2">ISI DATA</p>
-                </div>
-                <div class="w-20 h-1 bg-gray-300"></div>
-                <div class="text-center">
-                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">3</div>
-                    <p class="text-sm font-medium mt-2">SELESAI</p>
+        <!-- Progress Steps -->
+       <div class="flex justify-center mb-20">
+
+
+            <div class="w-full max-w-5xl px-4">
+                <div class="flex items-center">
+
+                    <!-- STEP 1 (DONE) -->
+                    <div class="relative flex flex-col items-center">
+                       <div class="w-10 h-10 rounded-full bg-[#2663EB] ring-8 ring-yellow-200"></div>
+
+                        <p class="absolute top-14 text-xs font-semibold text-gray-700 whitespace-nowrap">
+                            PILIH PAKET
+                        </p>
+                    </div>
+
+                    <!-- LINE 1 -->
+                    <div class="flex-1 h-2 bg-yellow-200"></div>
+
+                    <!-- STEP 2 (DONE) -->
+                    <div class="relative flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full bg-gray-200"></div>
+                        <p class="absolute top-14 text-xs font-semibold text-gray-700 whitespace-nowrap">
+                            ISI DATA
+                        </p>
+                    </div>
+
+                    <!-- LINE 2 -->
+                    <div class="flex-1 h-2 bg-gray-200"></div>
+
+                    <!-- STEP 3 (ACTIVE) -->
+                    <div class="relative flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full bg-gray-200"></div>
+                        <p class="absolute top-14 text-xs font-semibold text-gray-700 whitespace-nowrap">
+                            SELESAI
+                        </p>
+                    </div>
+
+
                 </div>
             </div>
         </div>
 
         <!-- Form -->
         <form class="bg-white rounded-lg shadow-sm overflow-hidden">
-            
+
             <div class="bg-gradient-to-r from-yellow-600 to-yellow-700 px-6 py-4">
                 <h2 class="text-white text-lg font-semibold">Pembayaran Paket</h2>
             </div>
 
-            <div class="p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="p-8 grid grid-cols-1 gap-8 max-w-6xl mx-auto">
+
+
 
                 <!-- Left Section -->
-                <div class="lg:col-span-2 space-y-6">
-                    
+                <div class="space-y-6">
+
                     <!-- Package Info -->
                     <div class="border border-yellow-300 rounded-lg overflow-hidden">
                         <div class="bg-yellow-400 px-6 py-3">
@@ -160,7 +214,7 @@
                         </p>
 
                         <div class="text-center">
-                            <a href="#" class="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition font-medium">
+                            <a href="{{ route('purchase') }}" class="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition font-medium">
                                 Top Up Poin
                             </a>
                         </div>
@@ -171,9 +225,11 @@
 
             <!-- Buttons -->
             <div class="flex justify-center gap-4 pb-8">
-                <a href="#" class="px-8 py-3 border rounded-lg">
+                <a href="{{ route('dashboard') }}"
+                    class="px-8 py-3 border rounded-lg hover:bg-gray-50">
                     Kembali
                 </a>
+
 
                 <a href="{{ route('ads.create') }}" class="px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
                     Gunakan Poin
@@ -181,6 +237,9 @@
             </div>
 
         </form>
+
+
+
     </main>
 
     <script>
@@ -190,5 +249,13 @@
         }
     </script>
 </body>
+
+<!-- Footer -->
+<footer id="contact" class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+        <p>&copy; 2023 Jadi Ngetop. All rights reserved.</p>
+        <p>Contact us at support@jadingetop.com</p>
+    </div>
+</footer>
 
 </html>

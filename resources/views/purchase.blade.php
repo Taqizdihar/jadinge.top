@@ -46,28 +46,8 @@
 
             <button class="md:hidden text-gray-700" onclick="toggleMenu()">Menu</button>
         </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-            <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
-            <a href="#packages" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Packages</a>
-            <a href="#how-it-works" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">How It Works</a>
-            <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contact</a>
-
-            <div class="block px-4 py-2 bg-green-100">
-                <span class="text-green-800 font-semibold">Points: 1,200</span>
-            </div>
-
-            <!-- LOGOUT MOBILE FIX -->
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit"
-                    class="block w-full text-left px-4 py-2 bg-red-600 text-white hover:bg-red-700">
-                    Logout
-                </button>
-            </form>
-        </div>
     </header>
+
 
     <section class="py-16 bg-white">
         <div class="container mx-auto px-6 max-w-3xl">
