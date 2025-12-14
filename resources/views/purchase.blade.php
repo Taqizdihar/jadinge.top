@@ -46,45 +46,25 @@
 
             <button class="md:hidden text-gray-700" onclick="toggleMenu()">Menu</button>
         </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-            <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
-            <a href="#packages" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Packages</a>
-            <a href="#how-it-works" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">How It Works</a>
-            <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contact</a>
-
-            <div class="block px-4 py-2 bg-green-100">
-                <span class="text-green-800 font-semibold">Points: 1,200</span>
-            </div>
-
-            <!-- LOGOUT MOBILE FIX -->
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit"
-                    class="block w-full text-left px-4 py-2 bg-red-600 text-white hover:bg-red-700">
-                    Logout
-                </button>
-            </form>
-        </div>
     </header>
+
 
     <section class="py-16 bg-white">
         <div class="container mx-auto px-6 max-w-3xl">
 
             <!-- Current Points -->
-            <!-- Current Points -->
-            <div class="rounded-2xl p-8 mb-10 text-center shadow-lg
-            text-white
-            bg-[linear-gradient(180deg,#091540_0%,_#0C2C56_40%,_#39B4FC_100%)]
-            ">
-                <h3 class="text-xl font-semibold mb-2">Poin Saya</h3>
+            <div class="rounded-2xl p-6 mb-8 text-center shadow
+bg-[linear-gradient(180deg,#091540_0%,#0C2C56_45%,#39B4FC_100%)]">
 
-                <p class="text-5xl font-bold text-[#F4CE56] drop-shadow">
+                <p class="text-sm uppercase tracking-wide text-white/70">
+                    Poin Saya
+                </p>
+
+                <p class="text-4xl font-semibold text-[#F4CE56] mt-1">
                     1,200
                 </p>
 
-                <p class="text-white/80 text-sm mt-2">
+                <p class="text-xs text-white/70 mt-2 max-w-xs mx-auto">
                     Saldo Anda dikonversi menjadi poin untuk pembelian paket iklan.
                 </p>
             </div>
@@ -99,52 +79,95 @@
                     Masukkan Jumlah (Rp)
                 </label>
 
-                <div class="border border-[#D39D2C] bg-[#FFF7D1] rounded-xl flex items-center px-5 py-4 mb-6">
-                    <span class="text-xl font-semibold text-gray-700 mr-3">Rp</span>
-                    <input
-                        id="topup-amount"
-                        type="number"
-                        class="w-full bg-transparent outline-none text-4xl font-bold text-gray-900"
-                        placeholder="0">
+                <div class="border border-[#D39D2C] bg-[#FFF7D1]
+rounded-xl px-5 py-3 mb-3
+focus-within:ring-2 focus-within:ring-[#F4CE56]
+transition">
+
+                    <div class="flex items-center">
+                        <span class="text-lg font-medium text-gray-600 mr-2">Rp</span>
+                        <input
+                            id="topup-amount"
+                            type="number"
+                            class="w-full bg-transparent outline-none
+      text-2xl font-semibold text-gray-900"
+                            placeholder="0"
+                            oninput="updatePointEstimate()">
+                    </div>
                 </div>
 
-                <p class="text-gray-600 mb-4">Rp 10.000 = 10 Poin.</p>
+                <p id="point-estimate" class="text-sm text-gray-600 mb-6">
+                    ≈ 0 poin
+                </p>
+
 
                 <!-- Quick Select -->
                 <div class="grid grid-cols-2 gap-4 mb-10">
                     <button onclick="setAmount(50000)"
-                        class="bg-[#FFF7D1] border border-[#E5C261] text-gray-800 py-4 rounded-xl text-lg font-semibold hover:bg-[#ffefb3] transition">
-                        + Rp 50.000
+                        class="group bg-[#FFF7D1] border border-[#E5C261]
+rounded-xl py-3 px-4 text-left
+hover:bg-[#ffefb3] active:scale-95 transition">
+
+                        <p class="text-sm text-gray-600">Top up</p>
+                        <p class="text-lg font-semibold text-gray-800">
+                            Rp 50.000
+                        </p>
                     </button>
+
 
                     <button onclick="setAmount(100000)"
-                        class="bg-[#FFF7D1] border border-[#E5C261] text-gray-800 py-4 rounded-xl text-lg font-semibold hover:bg-[#ffefb3] transition">
-                        + Rp 100.000
+                        class="group bg-[#FFF7D1] border border-[#E5C261]
+rounded-xl py-3 px-4 text-left
+hover:bg-[#ffefb3] active:scale-95 transition">
+
+                        <p class="text-sm text-gray-600">Top up</p>
+                        <p class="text-lg font-semibold text-gray-800">
+                            Rp 100.000
+                        </p>
                     </button>
 
+
                     <button onclick="setAmount(250000)"
-                        class="bg-[#FFF7D1] border border-[#E5C261] text-gray-800 py-4 rounded-xl text-lg font-semibold hover:bg-[#ffefb3] transition">
-                        + Rp 250.000
+                        class="group bg-[#FFF7D1] border border-[#E5C261]
+rounded-xl py-3 px-4 text-left
+hover:bg-[#ffefb3] active:scale-95 transition">
+
+                        <p class="text-sm text-gray-600">Top up</p>
+                        <p class="text-lg font-semibold text-gray-800">
+                            Rp 250.000
+                        </p>
                     </button>
 
                     <button onclick="setAmount(500000)"
-                        class="bg-[#FFF7D1] border border-[#E5C261] text-gray-800 py-4 rounded-xl text-lg font-semibold hover:bg-[#ffefb3] transition">
-                        + Rp 500.000
+                        class="group bg-[#FFF7D1] border border-[#E5C261]
+rounded-xl py-3 px-4 text-left
+hover:bg-[#ffefb3] active:scale-95 transition">
+
+                        <p class="text-sm text-gray-600">Top up</p>
+                        <p class="text-lg font-semibold text-gray-800">
+                            Rp 500.000
+                        </p>
                     </button>
+
                 </div>
 
                 <!-- Payment Method -->
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Metode Pembayaran</h3>
 
-                <div class="bg-white border border-[#E5C261] rounded-xl p-6 text-center shadow-sm">
-                    <p class="text-gray-600 mb-4">Pembayaran menggunakan QRIS.</p>
+                <div class="border border-[#E5C261] rounded-xl p-5 text-center">
 
-                    <!-- QR IMAGE -->
-                    <img src="https://via.placeholder.com/240x240?text=QRIS"
-                        class="mx-auto shadow-md rounded-lg mb-3">
+                    <p class="text-sm text-gray-600 mb-3">
+                        Scan QRIS untuk membayar
+                    </p>
 
-                    <p class="text-sm text-gray-500">Scan dengan aplikasi yang mendukung QRIS</p>
+                    <img src="https://via.placeholder.com/200x200?text=QRIS"
+                        class="mx-auto rounded-lg shadow mb-3">
+
+                    <p class="text-xs text-gray-500">
+                        Mendukung semua e-wallet & mobile banking
+                    </p>
                 </div>
+
 
                 <!-- QRIS Instructions -->
                 <div class="mt-10 bg-white border border-[#E5C261] rounded-2xl p-8 shadow-sm">
@@ -169,9 +192,10 @@
 
                 <!-- Payment Button -->
                 <a href="{{ route('payment.status', ['invoice' => 'JDN-124532-0123']) }}"
-                    class="block w-full mt-8 bg-green-600 text-white text-center py-4 rounded-xl text-xl font-semibold hover:bg-green-700 transition">
+                    class="block w-full mt-8 bg-blue-600 text-white text-center py-4 rounded-xl text-xl font-semibold hover:bg-blue-700 transition">
                     Lanjutkan Pembayaran
                 </a>
+
 
 
             </div>
@@ -199,8 +223,10 @@
             menu.classList.toggle('hidden');
         }
 
-        function setAmount(amount) {
-            document.getElementById('topup-amount').value = amount;
+        function setAmount(value) {
+            const input = document.getElementById("topup-amount")
+            input.value = value
+            updatePointEstimate()
         }
 
         function continueToPayment() {
@@ -211,6 +237,13 @@
             } else {
                 alert('Please enter a valid amount (minimum Rp 10,000).');
             }
+        }
+
+        function updatePointEstimate() {
+            const value = Number(document.getElementById('topup-amount').value || 0)
+            const points = Math.floor(value / 1000)
+            document.getElementById('point-estimate').innerText =
+                `≈ ${points} poin`
         }
     </script>
 </body>
