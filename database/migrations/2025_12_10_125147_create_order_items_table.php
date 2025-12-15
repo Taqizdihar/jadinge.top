@@ -7,18 +7,17 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
 
     public function up(): void {
-        Schema::create('order_items', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained()->onDelete('cascade');
-            $table->foreignId('totem_id')->constrained()->onDelete('cascade');
-            $table->dateTime('start_datetime');
-            $table->dateTime('end_datetime');
-            $table->index(['totem_id', 'start_datetime', 'end_datetime']);            
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->enum('type', ['deposit', 'payment']);
+            $table->decimal('amount', 12, 2);
+            $table->string('description');
+            $table->string('proof_file')->nullable();
+            $table->enum('status', ['pending', 'success', 'failed'])->default('success'); 
+            $table->foreignId('order_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('admin_id')->nullable()->constrained('users')->onDelete('set null'); 
             $table->timestamps();
         });
-    }
-
-    public function down(): void {
-        Schema::dropIfExists('order_items');
     }
 };
