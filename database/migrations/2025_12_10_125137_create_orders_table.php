@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
 
-    public function up(): void {
+    public function up(): void{
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
@@ -15,13 +15,17 @@ return new class extends Migration {
             $table->string('content_file')->nullable();
             $table->enum('content_type', ['image', 'video'])->nullable();
             $table->integer('content_duration');
-            $table->string('status')->default('draft');
+            $table->enum('status', [
+                'draft', 
+                'waiting_review',
+                'content_rejected',
+                'approved',
+                'scheduled',
+                'completed',
+                'cancelled'
+            ])->default('draft');
             $table->text('rejection_note')->nullable();
             $table->timestamps();
         });
-    }
-
-    public function down(): void {
-        Schema::dropIfExists('orders');
     }
 };
