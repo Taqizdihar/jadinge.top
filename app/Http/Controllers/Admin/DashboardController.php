@@ -9,7 +9,7 @@ class DashboardController extends Controller
     public function index()
     {
         $activeAds = Ads::where('status', 'active')->count();
-        $locations = 5; // contoh dummy data
+        $locations = 5; 
 
         return view('admin.dashboard', compact('activeAds', 'locations'));
     }
