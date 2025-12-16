@@ -33,34 +33,41 @@ class AuthController extends Controller
             'email'    => $request->email,
             'username' => $request->username,
             'password' => bcrypt($request->password),
-            'role'     => 'user', 
+            'role'     => 'client', // Gunakan 'client' sesuai ENUM database kamu
         ]);
 
         return redirect('/login')->with('success', 'Registrasi Berhasil! Silakan Login.');
     }
 
+    // PROSES LOGIN
     public function login(Request $request)
-{
-    $request->validate([
-        'email'    => 'required|email', 
-        'password' => 'required',
-    ]);
+    {
+        // 1. Validasi menggunakan 'email' sesuai name="email" di HTML kamu
+        $request->validate([
+            'email'    => 'required|email', 
+            'password' => 'required',
+        ]);
 
-    $credentials = $request->only('email', 'password');
+        $credentials = $request->only('email', 'password');
 
-    if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
+        // 2. Cek Login
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-        // Sesuai dengan ENUM di database kamu ('admin' & 'client')
-        if (Auth::user()->role === 'admin') {
-            return redirect()->intended('/admin/dashboard');
+            // 3. Role Check (Sesuai ENUM di database: admin & client)
+            if (Auth::user()->role === 'admin') {
+                return redirect()->intended('/admin/dashboard');
+            }
+
+            // Jika role adalah client
+            return redirect()->intended('/dashboard'); 
         }
 
-        return redirect()->intended('/dashboard'); 
+        // 4. Jika gagal
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ])->onlyInput('email');
     }
-
-    return back()->withErrors(['email' => 'Email atau password salah.']);
-}
 
     // PROSES LOGOUT
     public function logout(Request $request)
