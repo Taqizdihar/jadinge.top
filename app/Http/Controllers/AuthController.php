@@ -40,29 +40,36 @@ class AuthController extends Controller
         return redirect('/login')->with('success', 'Registration successful');
     }
 
-    // 🔥 LOGIN FIX
+    // 🔥 LOGIN FIX (Disesuaikan dengan name="username" di blade teman Anda)
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email'    => 'required|email',
+        // 1. Validasi mengikuti nama input di blade teman Anda yaitu 'username'
+        $request->validate([
+            'username' => 'required', 
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        // 2. Mapping: Ambil isi dari input 'username' untuk dicek ke kolom 'email' di database
+        $credentials = [
+            'email'    => $request->username, 
+            'password' => $request->password,
+        ];
 
-            // 🔐 ROLE CHECK
-            if (auth()->user()->role === 'admin') {
-                return redirect()->route('admin.dashboard');
-            }
+        // ... bagian login ...
+if (Auth::attempt($credentials)) {
+    $request->session()->regenerate();
 
-            return redirect('/dashboard');
-        }
-
-        return back()->withErrors([
-            'email' => 'Email atau password salah',
-        ]);
+    // 🔐 ROLE CHECK
+    if (Auth::user()->role === 'admin') {
+        // Gunakan intended agar jika user mau ke dashboard admin, dia tidak tertahan
+        return redirect()->intended(route('admin.dashboard'));
     }
+
+    // Arahkan user biasa ke dashboard mereka
+    return redirect()->intended('/dashboard'); 
+}
+}
+// ...
 
     // LOGOUT
     public function logout(Request $request)
