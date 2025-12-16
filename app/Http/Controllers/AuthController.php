@@ -40,9 +40,10 @@ class AuthController extends Controller
         return redirect('/login')->with('success', 'Registration successful');
     }
 
-    // 🔥 LOGIN FIX
+    // 🔥 LOGIN FIX (Disesuaikan dengan name="username" di blade teman Anda)
     public function login(Request $request)
     {
+<<<<<<< HEAD
         // 1. CEK APAKAH DATA SAMPAI KE CONTROLLER?
         //dd($request->all()); // <--- Hapus komentar ini, lalu coba submit form. 
         // Jika layar berubah jadi hitam berisi data JSON, berarti Routing & Form BENAR.
@@ -50,12 +51,21 @@ class AuthController extends Controller
 
         $credentials = $request->validate([
             'email'    => 'required|email',
+=======
+        // 1. Validasi mengikuti nama input di blade teman Anda yaitu 'username'
+        $request->validate([
+            'username' => 'required', 
+>>>>>>> ddffb3d0dea7db024a48e2c20e7ae6fd7368202f
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        // 2. Mapping: Ambil isi dari input 'username' untuk dicek ke kolom 'email' di database
+        $credentials = [
+            'email'    => $request->username, 
+            'password' => $request->password,
+        ];
 
+<<<<<<< HEAD
             // 2. CEK APAKAH LOGIN BERHASIL TAPI SALAH REDIRECT?
             // dd('Login Berhasil, User: ' . auth()->user()->name); // <--- Hapus komentar ini.
             // Jika muncul tulisan ini, berarti user BERHASIL login, tapi error di logic redirect bawahnya.
@@ -74,7 +84,23 @@ class AuthController extends Controller
         return back()->withErrors([
             'email' => 'Email atau password salah',
         ]);
+=======
+        // ... bagian login ...
+if (Auth::attempt($credentials)) {
+    $request->session()->regenerate();
+
+    // 🔐 ROLE CHECK
+    if (Auth::user()->role === 'admin') {
+        // Gunakan intended agar jika user mau ke dashboard admin, dia tidak tertahan
+        return redirect()->intended(route('admin.dashboard'));
+>>>>>>> ddffb3d0dea7db024a48e2c20e7ae6fd7368202f
     }
+
+    // Arahkan user biasa ke dashboard mereka
+    return redirect()->intended('/dashboard'); 
+}
+}
+// ...
 
     // LOGOUT
     public function logout(Request $request)
