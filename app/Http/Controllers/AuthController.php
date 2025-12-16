@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    // FORM
     public function loginForm()
     {
         return view('login');
@@ -19,7 +18,7 @@ class AuthController extends Controller
         return view('register');
     }
 
-    // REGISTER
+    // PROSES REGISTER
     public function register(Request $request)
     {
         $request->validate([
@@ -34,48 +33,39 @@ class AuthController extends Controller
             'email'    => $request->email,
             'username' => $request->username,
             'password' => bcrypt($request->password),
-            'role'     => 'user', // default user
+            'role'     => 'user', 
         ]);
 
-        return redirect('/login')->with('success', 'Registration successful');
+        return redirect('/login')->with('success', 'Registrasi Berhasil! Silakan Login.');
     }
 
-    // 🔥 LOGIN FIX (Disesuaikan dengan name="username" di blade teman Anda)
     public function login(Request $request)
-    {
-        // 1. Validasi mengikuti nama input di blade teman Anda yaitu 'username'
-        $request->validate([
-            'username' => 'required', 
-            'password' => 'required',
-        ]);
+{
+    $request->validate([
+        'email'    => 'required|email', 
+        'password' => 'required',
+    ]);
 
-        // 2. Mapping: Ambil isi dari input 'username' untuk dicek ke kolom 'email' di database
-        $credentials = [
-            'email'    => $request->username, 
-            'password' => $request->password,
-        ];
+    $credentials = $request->only('email', 'password');
 
-        // ... bagian login ...
-if (Auth::attempt($credentials)) {
-    $request->session()->regenerate();
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
 
-    // 🔐 ROLE CHECK
-    if (Auth::user()->role === 'admin') {
-        // Gunakan intended agar jika user mau ke dashboard admin, dia tidak tertahan
-        return redirect()->intended(route('admin.dashboard'));
+        // Sesuai dengan ENUM di database kamu ('admin' & 'client')
+        if (Auth::user()->role === 'admin') {
+            return redirect()->intended('/admin/dashboard');
+        }
+
+        return redirect()->intended('/dashboard'); 
     }
 
-    // Arahkan user biasa ke dashboard mereka
-    return redirect()->intended('/dashboard'); 
+    return back()->withErrors(['email' => 'Email atau password salah.']);
 }
-}
-// ...
 
-    // LOGOUT
+    // PROSES LOGOUT
     public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
